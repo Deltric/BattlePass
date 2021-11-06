@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "battlepass",
+    "name": "BattlePass",
+    "description": "Minecraft Forge Battle Pass server side mod  ",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://deltric.dev",
+    "updateUrl": "",
+    "authorList": [
+      "Deltric"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
