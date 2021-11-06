@@ -56,26 +56,19 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven { url 'https://jitpack.io' }
+    ivy {
+        url "https://download.nodecdn.net/containers"
+        patternLayout {
+            artifact "/[organisation]/[module]/release/[revision]/[ext]"
+        }
+        metadataSources {
+            artifact()
+        }
+    }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2855'
-
+    implementation 'reforged:server:8.3.1@Pixelmon-1.12.2-8.3.1c-server.jar'
     implementation 'com.github.landonjw:GooeyLibs:v2.0.3'
 }
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "battlepass",
-                "Specification-Vendor"    : "Deltric",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Deltric",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-jar.finalizedBy('reobfJar')

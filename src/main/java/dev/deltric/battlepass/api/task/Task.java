@@ -2,7 +2,7 @@ package dev.deltric.battlepass.api.task;
 
 import net.minecraftforge.fml.common.eventhandler.Event;
 
-public interface Task {
+public interface Task<T extends Event> {
 
     /**
      * Gets the task id
@@ -11,9 +11,15 @@ public interface Task {
     String getId();
 
     /**
+     * Gets the event class for this task
+     * @return task event class
+     */
+    Class<T> getEventClass();
+
+    /**
      * Processes a forge event
      * @param event - event to process
      */
-    void processEvent(Event event);
+    void processEvent(T event);
 
 }

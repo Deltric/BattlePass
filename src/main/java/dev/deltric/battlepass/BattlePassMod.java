@@ -1,5 +1,7 @@
 package dev.deltric.battlepass;
 
+import com.pixelmonmod.pixelmon.Pixelmon;
+import dev.deltric.battlepass.listener.PixelmonListener;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -13,7 +15,7 @@ public class BattlePassMod {
 
     @Mod.EventHandler
     public void onInitialization(FMLInitializationEvent event) {
-
+        Pixelmon.EVENT_BUS.register(new PixelmonListener());
     }
 
 }

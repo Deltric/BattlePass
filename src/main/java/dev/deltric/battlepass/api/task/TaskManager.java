@@ -1,5 +1,6 @@
 package dev.deltric.battlepass.api.task;
 
+import dev.deltric.battlepass.impl.task.PokemonCaptureTask;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 import java.util.HashMap;
@@ -8,10 +9,11 @@ import java.util.Optional;
 public class TaskManager {
 
     private static TaskManager instance;
-    private HashMap<String, Task> tasks;
+    private HashMap<String, Task<?>> tasks;
 
     public TaskManager() {
         this.tasks = new HashMap<>();
+        this.registerTask(new PokemonCaptureTask());
         // TODO(Deltric): Add defaults to task manager
     }
 
@@ -19,7 +21,7 @@ public class TaskManager {
      * Registers a new task handler
      * @param task - new task
      */
-    public void registerTask(Task task) {
+    public void registerTask(Task<?> task) {
         this.tasks.put(task.getId(), task);
     }
 
@@ -28,7 +30,7 @@ public class TaskManager {
      * @param id - task id
      * @return optional with a task value if found, otherwise empty
      */
-    public Optional<Task> unregisterTask(String id) {
+    public Optional<Task<?>> unregisterTask(String id) {
         return Optional.ofNullable(this.tasks.remove(id));
     }
 
@@ -37,6 +39,7 @@ public class TaskManager {
      * @param id - task id
      * @param event - event to process
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void processEvent(String id, Event event) {
         // Return if the id is null or empty
         if(id == null || id.isEmpty()) {
@@ -49,8 +52,9 @@ public class TaskManager {
         }
 
         // If a task is found with that id, process event
+        // additionally check if the event classes are the same
         Task task = this.tasks.get(id);
-        if(task != null) {
+        if(task != null && task.getEventClass().isInstance(event)) {
             task.processEvent(event);
         }
     }
