@@ -1,7 +1,7 @@
 package dev.deltric.battlepass;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
-import dev.deltric.battlepass.listener.PixelmonListener;
+import dev.deltric.battlepass.impl.listener.PixelmonListener;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 

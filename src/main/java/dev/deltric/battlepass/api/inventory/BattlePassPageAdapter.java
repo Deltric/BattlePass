@@ -10,7 +10,7 @@ public interface BattlePassPageAdapter {
      * Creates the battle pass inventory for the player
      * @param data - players battle pass data
      * @param player - player
-     * @return a inventory for the battle pass
+     * @return inventory for the battle pass
      */
     Page create(BattlePassData data, EntityPlayerMP player);
 
