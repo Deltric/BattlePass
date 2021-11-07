@@ -9,6 +9,7 @@ import java.io.*;
 
 /**
  * Gson utility for loading configs
+ * TODO(Deltric): Move to library mod
  */
 public class GConfig {
 
